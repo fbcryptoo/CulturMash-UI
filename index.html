@@ -1,41 +1,51 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const generateBtn = document.getElementById("generateBtn");
-  const status = document.getElementById("status");
-  const img = document.getElementById("memeImage");
-  const download = document.getElementById("downloadBtn");
-
-  generateBtn.addEventListener("click", async () => {
-    const icon1 = document.getElementById("icon1").value;
-    const icon2 = document.getElementById("icon2").value;
-    const vibe = document.getElementById("vibe").value;
-
-    // Reset image and download
-    img.style.display = "none";
-    download.style.display = "none";
-    status.textContent = "🎨 Generating meme... please wait 10–20 seconds.";
-
-    try {
-      const response = await fetch("https://cultur-mash-backend.vercel.app/api/generate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ icon1, icon2, vibe })
-      });
-
-      if (!response.ok) {
-        throw new Error("Image generation failed");
-      }
-
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-
-      img.src = url;
-      img.style.display = "block";
-      download.href = url;
-      download.style.display = "inline-block";
-      status.textContent = "✅ Meme generated!";
-    } catch (err) {
-      console.error("Error generating meme:", err);
-      status.textContent = "❌ Failed to generate meme. Try again.";
-    }
-  });
-});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CulturMash Generator DApp</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>CULTURMASH GENERATOR DAPP</h1>
+    <p>Meme the World. One Chaos Combo at a Time.</p>
+  </header>
+  <main>
+    <div class="dropdowns">
+      
+    <div class="dropdown">
+      <label for="icon1">🧠 1st Cultural Icon</label>
+      <select id="icon1">
+        <option>Viking Warlord</option><option>Egyptian Pharaoh</option><option>Samurai Monk</option><option>Renaissance Painter</option><option>Roman Gladiator</option><option>Medieval Jester</option><option>Pirate Captain</option><option>Greek Philosopher</option><option>Mayan Priest</option><option>Cleopatra</option><option>Joan of Arc</option><option>Shogun General</option><option>Caveman Shaman</option><option>Aztec Warrior</option><option>Spartan King</option><option>Ninja Assassin</option><option>Celtic Druid</option><option>Mongolian Khan</option><option>Anubis</option><option>Viking Skald</option><option>Inca Emperor</option><option>Persian Sorcerer</option><option>Knight Templar</option><option>Sumerian Priestess</option><option>Maori Chieftain</option><option>Trojan Hero</option><option>Druidess of Avalon</option><option>Chinese Warlord</option><option>Norse Valkyrie</option><option>Hannibal</option>
+      </select>
+    </div>
+    
+      
+    <div class="dropdown">
+      <label for="icon2">😜 2nd Cultural Icon</label>
+      <select id="icon2">
+        <option>K-Pop Star</option><option>TikTok E-Boy</option><option>Doge</option><option>Crypto Bro</option><option>Twitch Streamer</option><option>Skateboard Pro</option><option>Reality TV Star</option><option>Meme Lord</option><option>Elon Musk</option><option>Pop Diva</option><option>Street Artist</option><option>Esports Champion</option><option>Instagram Influencer</option><option>VR Gamer</option><option>Hypebeast Sneakerhead</option><option>Conspiracy Theorist</option><option>Food Truck Chef</option><option>Cosplay Queen</option><option>Podcast Host</option><option>AI Overlord</option><option>TikTok E-Girl</option><option>NFT Collector</option><option>Pepe the Frog</option><option>Streetwear Designer</option><option>Meme Coin Dev</option><option>Battle Rapper</option><option>Viral Cat</option><option>Crypto Punk</option><option>Drag Queen Icon</option><option>Cybertruck</option>
+      </select>
+    </div>
+    
+      
+    <div class="dropdown">
+      <label for="vibe">🎨 Vibe</label>
+      <select id="vibe">
+        <option>Cyberpunk Neon</option><option>Disco Fever</option><option>Toga Party</option><option>Post-Apocalyptic Wasteland</option><option>Kawaii Pastel</option><option>Vaporwave Retro</option><option>Gothic Cathedral</option><option>Alien Invasion</option><option>Pirate Ship Rave</option><option>Virtual Reality Matrix</option><option>80s Synthwave</option><option>Steampunk Airship</option><option>Anime Festival</option><option>Haunted Carnival</option><option>Intergalactic Space Station</option><option>Meme-Con Festival</option><option>Ancient Ruins Glow-Up</option><option>TikTok Dance Battle</option><option>Holographic Runway</option><option>Taco Truck Takeover</option><option>Glitch Art Void</option><option>Y2K Bling</option><option>Retro Arcade Mania</option><option>Psychedelic Woodstock</option><option>Samurai Dojo Rave</option><option>Zombie Apocalypse</option><option>Metaverse Nightclub</option><option>Galactic Surf Party</option><option>Renaissance Faire Remix</option><option>Crypto Moon Landing</option>
+      </select>
+    </div>
+    
+    </div>
+    <button id="generateBtn">🔮 Generate CultureMash</button>
+    <div id="status"></div>
+    <div id="output">
+      <img id="memeImage" />
+      <a id="downloadBtn" href="#" download="culturmash.png" style="display:none;">⬇️ Download Meme</a>
+    </div>
+  </main>
+  <footer>&copy; 2025 CulturCoin. Powered by $LOLZ.</footer>
+  <script src="script.js"></script>
+</body>
+</html>
